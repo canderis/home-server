@@ -51,13 +51,13 @@ services:
       CFG_DB_NAME: "minecraft"
       CFG_DB_PASSWORD: "ug23u3bg39o-ogADSs"
     restart: always
-    rcon:
-      image: itzg/rcon
-      ports:
-        - 4326:4326
-        - 4327:4327
-      volumes:
-        - "rcon:/opt/rcon-web-admin/db"
+  rcon:
+    image: itzg/rcon
+    ports:
+      - 4326:4326
+      - 4327:4327
+    volumes:
+      - "rcon:/opt/rcon-web-admin/db"
 volumes:
   mc: /apps/minecraft
   rcon: /apps/minecraft/rcon
