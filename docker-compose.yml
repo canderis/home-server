@@ -3,6 +3,8 @@ services:
   plex:
     image: linuxserver/plex
     container_name: plex
+    ports:
+      - "32400:32400"
     network_mode: host
     environment:
       - PUID=1000
