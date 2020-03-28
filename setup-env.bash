@@ -2,8 +2,6 @@
 # Setup Firewall
 # -------------------
 
-apt-get install ufw
-
 # Plex
 ufw allow 32400
 
