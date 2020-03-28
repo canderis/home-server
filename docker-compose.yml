@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3"
 services:
   plex:
     image: linuxserver/plex
@@ -35,7 +35,7 @@ services:
       ports:
         - 25565:25565
       volumes:
-        - "mc:/data"
+        - mc:/data
       environment:
         EULA: "TRUE"
         ENABLE_RCON: "true"
