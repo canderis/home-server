@@ -1,19 +1,19 @@
 version: "3"
 services:
-  # plex:
-  #   image: linuxserver/plex
-  #   container_name: plex
-  #   network_mode: host
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - VERSION=docker
-  #   volumes:
-  #     - /apps/plex/config:/config
-  #     - /apps/plex/tv:/tv
-  #     - /apps/plex/movies:/movies
-  #     - /apps/plex/workout:/workout
-  #   restart: unless-stopped
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+    volumes:
+      - /apps/plex/config:/config
+      - /apps/plex/tv:/tv
+      - /apps/plex/movies:/movies
+      - /apps/plex/workout:/workout
+    restart: unless-stopped
   openvpn-as:
     image: linuxserver/openvpn-as
     container_name: openvpn-as
@@ -30,31 +30,32 @@ services:
       - 9443:9443
       - 1194:1194/udp
     restart: unless-stopped
-  # minecraft:
-  #   image: itzg/minecraft-server
-  #   container_name: minecraft
-  #   ports:
-  #     - "25565:25565"
-  #   volumes:
-  #     - /apps/minecraft:/data
-  #   environment:
-  #     EULA: "TRUE"
-  #     ENABLE_RCON: "true"
-  #     RCON_PASSWORD: "testing"
-  #     RCON_PORT: 28016
-  #     # enable env variable replacement
-  #     REPLACE_ENV_VARIABLES: "TRUE"
-  #     # define an optional prefix for your env variables you want to replace
-  #     ENV_VARIABLE_PREFIX: "CFG_"
-  #     # and here are the actual variables
-  #     CFG_DB_HOST: "http://localhost:3306"
-  #     CFG_DB_NAME: "minecraft"
-  #     CFG_DB_PASSWORD: "ug23u3bg39o-ogADSs"
-  #   restart: always
-  # rcon:
-  #   image: itzg/rcon
-  #   ports:
-  #     - 4326:4326
-  #     - 4327:4327
-  #   volumes:
-  #     - /apps/minecraft/rcon:/opt/rcon-web-admin/db
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: minecraft
+    ports:
+      - "25565:25565"
+    volumes:
+      - /apps/minecraft:/data
+    environment:
+      VERSION: 1.15.2
+      EULA: "TRUE"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "testing"
+      RCON_PORT: 28016
+      # enable env variable replacement
+      REPLACE_ENV_VARIABLES: "TRUE"
+      # define an optional prefix for your env variables you want to replace
+      ENV_VARIABLE_PREFIX: "CFG_"
+      # and here are the actual variables
+      CFG_DB_HOST: "http://localhost:3306"
+      CFG_DB_NAME: "minecraft"
+      CFG_DB_PASSWORD: "ug23u3bg39o-ogADSs"
+    restart: always
+  rcon:
+    image: itzg/rcon
+    ports:
+      - 4326:4326
+      - 4327:4327
+    volumes:
+      - /apps/minecraft/rcon:/opt/rcon-web-admin/db
